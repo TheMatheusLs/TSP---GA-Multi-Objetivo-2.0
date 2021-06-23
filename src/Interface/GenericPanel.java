@@ -3,8 +3,6 @@ package Interface;
 import java.awt.*;
 import javax.swing.*;
 
-import GeneticAlgorithm.World;
-
 public class GenericPanel extends JPanel{
 
     String nameID;

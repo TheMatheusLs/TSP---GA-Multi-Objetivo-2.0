@@ -3,7 +3,6 @@ package Interface;
 import java.awt.*;
 import javax.swing.*;
 
-import GeneticAlgorithm.Config;
 import GeneticAlgorithm.World;
 import Helpers.TownHelper;
 

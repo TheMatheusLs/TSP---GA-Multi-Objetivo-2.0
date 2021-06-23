@@ -131,9 +131,6 @@ public class WorldHelper {
         // Grab two unique towns
         int[] towns = GetUniqueTowns(individual.sequence);
 
-        // Grab a reference to the sequence - just to make code below tidier
-        List<Integer> sequence = individual.sequence;
-
         // Determine which of the indices chosen comes before the other
         int firstIndex = towns[0] < towns[1] ?  towns[0] : towns[1];
         int secondIndex = towns[0] < towns[1] ?  towns[1] : towns[0];
