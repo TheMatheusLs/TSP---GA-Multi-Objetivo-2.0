@@ -123,4 +123,15 @@ public class Utility {
 
         return returnRank;
     }
+
+    public static boolean isIndividualHasSameSequence(Individual individualA, Individual individualB){
+
+        for (int i = 0; i < individualA.sequence.size(); i++){
+            if (individualA.sequence.get(i) != individualB.sequence.get(i)){
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

@@ -76,16 +76,12 @@ public class ParetoPanel extends JPanel{
     }
 
     private void genParetoColor(){
-        paretoColor.add(new Color(0, 0, 0));
         paretoColor.add(new Color(200, 0, 0));
         paretoColor.add(new Color(0, 200, 0));
         paretoColor.add(new Color(0, 0, 200));
-        // paretoColor.add(new Color(80, 186, 230, 90));
-        // paretoColor.add(new Color(114, 245, 35, 96));
-        // paretoColor.add(new Color(217, 165, 87, 85));
-        // paretoColor.add(new Color(240, 84, 206, 94));
-        // paretoColor.add(new Color(80, 145, 230, 90));
-        // paretoColor.add(new Color(0, 0, 0, 0));
+        paretoColor.add(new Color(200, 0, 200));
+        paretoColor.add(new Color(200, 200, 0));
+        paretoColor.add(new Color(0, 200, 200));
     }
 
     public void UpdatePareto(World world){
@@ -135,7 +131,7 @@ public class ParetoPanel extends JPanel{
         if (!individuals.isEmpty()){
 
             for (Individual individual : this.individuals){
-                int rank = individual.rank;
+                int rank = individual.rank - 1;
                 if (rank > paretoColor.size() - 1){
                     rank = paretoColor.size() - 1;
                 }

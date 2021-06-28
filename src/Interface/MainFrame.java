@@ -93,17 +93,13 @@ public class MainFrame extends JFrame implements Runnable{
 
 				// Atualiza o melhor inidivíduo
 				citiesPanel.updateSequence(world);
-				paretoPanel.UpdatePareto(world);
 
-				// if (world.generationsCount % Settings.FPS == 0){
-				// 	paretoPanel.hasUpdate = true;
-				// 	paretoPanel.UpdatePareto(world);
-				// 	//paretoPanel.repaint();
-				// }
+				// Atualiza a visualização da frente de pareto 
+				paretoPanel.UpdatePareto(world);
 				
+				// Painel não implementado
                 evolutionPanel.nameID = String.valueOf(world.generationsCount);
 				
-				//citiesPanel.repaint();
 				this.repaint();
 				delta--;
 			}

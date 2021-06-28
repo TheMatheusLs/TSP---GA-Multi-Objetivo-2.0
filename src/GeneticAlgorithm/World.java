@@ -37,7 +37,6 @@ public class World {
 
         generationsCount++;
 
-        // Create a list to hold our new offspring
         List<Individual> offspring = new ArrayList<Individual>();
 
         for (int i = 0; i < Config.populationCounts; i++){
@@ -71,17 +70,29 @@ public class World {
         // Encontra os melhores novos indivíduos
         List<Individual> newPopulation = new ArrayList<Individual>();
 
-        LOOP:for (List<Individual> individualRank : Utility.findAllRanksByDistance(this.populationOfIndividuals)){
-            for (Individual individual : individualRank){
-                if (!newPopulation.contains(individual))
-                {
-                    newPopulation.add(individual);
+        LOOP_RANK:for (List<Individual> individualRank : Utility.findAllRanksByDistance(this.populationOfIndividuals)){
+            LOOP_INDIVIDUAL:for (Individual individual : individualRank){
+                for (Individual individualInNewPopulation: newPopulation){
+                    if (Utility.isIndividualHasSameSequence(individualInNewPopulation, individual)){
+                        continue LOOP_INDIVIDUAL;
+                    }
                 }
 
+                newPopulation.add(individual);
+                
                 if (newPopulation.size() == Config.populationCounts){
-                    break LOOP;
+                    break LOOP_RANK;
                 }
             }
+        }
+
+        while (newPopulation.size() < Config.populationCounts){
+            // Cria uma lista com os ranks temporários
+            List<List<Individual>> individualRankTemp = Utility.findAllRanksByDistance(newPopulation);
+            List<Individual> firstRankTemp = individualRankTemp.get(0);
+
+            // Caso o tamanho da população não seja completado, cria clones dos inidivíduos dos primeiros front
+            newPopulation.add(new Individual(firstRankTemp.get(random.nextInt(firstRankTemp.size())).sequence));
         }
 
         this.populationOfIndividuals.clear();
@@ -122,10 +133,8 @@ public class World {
     }
 
     public Individual getParent(){
-        // Grab two candidate parents from the population.
         List<Individual> candidates = WorldHelper.GetCandidateParents(this.populationOfIndividuals);
 
-        // Perform the tournament selection
         return WorldHelper.tournamentSelection(candidates.get(0), candidates.get(1));
     }
 }

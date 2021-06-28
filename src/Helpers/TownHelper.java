@@ -8,7 +8,7 @@ import ExtensionMethods.Vector2f;
 import GeneticAlgorithm.Config;
 
 public class TownHelper {
-    private static final int minimumSpeedInPixels = 30;
+    private static final int minimumSpeedInPixels = 10;
     private static final int maximumSpeedInPixels = 100;
     private static final int speedRangeInPixels = maximumSpeedInPixels - minimumSpeedInPixels;
     private static Random random = new Random();

@@ -40,7 +40,7 @@ public class GamePanel extends JPanel{
 		drawCities(g);
 		infoDisplay.draw(g);
 		
-		Toolkit.getDefaultToolkit().sync(); // I forgot to add this line of code in the video, it helps with the animation
+		Toolkit.getDefaultToolkit().sync(); // Ajuda na animação
 	}
 
 	private void drawCities(Graphics g) {

@@ -30,7 +30,7 @@ public class GenericPanel extends JPanel{
 	
 		g.drawString(this.nameID, this.getWidth() / 2, this.getHeight() / 2);
 
-		Toolkit.getDefaultToolkit().sync(); // I forgot to add this line of code in the video, it helps with the animation
+		Toolkit.getDefaultToolkit().sync(); // Ajuda na animação
 
 	}
 }
