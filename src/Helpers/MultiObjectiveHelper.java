@@ -132,7 +132,7 @@ public class MultiObjectiveHelper {
             // If this individual is at least better than us in one objective and equal in another,
             // then we are dominated by this individual
             //if ((individualB.distanceFitness <= individualA.distanceFitness) && (individualB.timeFitness <= individualA.timeFitness)){
-            if ((individualB.NormalizedDistanceFitness <= individualA.NormalizedDistanceFitness) && (individualB.NormalizedTimeFitness <= individualA.NormalizedTimeFitness)){
+            if ((individualB.distanceFitness <= individualA.distanceFitness) && (individualB.timeFitness <= individualA.timeFitness)){
                 return false;
             }
         }

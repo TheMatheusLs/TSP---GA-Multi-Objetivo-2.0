@@ -1,6 +1,8 @@
 package Interface;
 
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 import GeneticAlgorithm.World;
@@ -11,19 +13,19 @@ public class MainFrame extends JFrame implements Runnable{
     Thread TimeThread;
 
 	GamePanel citiesPanel;
+	ParetoPanel paretoPanel;
 	GenericPanel evolutionPanel;
-	GenericPanel paretoPanel;
 	
     boolean isRunMainFrame;
 
 	World world;
 
-	public MainFrame(){
+	public MainFrame() throws IOException{
 
 		// *** Interface gráfica
         citiesPanel = new GamePanel();   
 		evolutionPanel = new GenericPanel(Color.RED, "Evolution");
-		paretoPanel = new GenericPanel(Color.GREEN, "Pareto");
+		paretoPanel = new ParetoPanel();
         
         // Configura o Main Frame
         this.setPreferredSize(new Dimension(Settings.mainFrameWidth, Settings.mainFrameHeight));
@@ -34,11 +36,11 @@ public class MainFrame extends JFrame implements Runnable{
 
         // Configura o main splitPane:
         mainSplitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-        mainSplitPane.setDividerLocation(Settings.mainFrameWidth * 2/3);                    
+        mainSplitPane.setDividerLocation(Settings.mainFrameWidth - Settings.auxPanelSize);                    
 		
 		JSplitPane auxSplitPane = new JSplitPane();  // Cria um novo painel
 		auxSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        auxSplitPane.setDividerLocation(Settings.mainFrameHeight / 2);                    
+        auxSplitPane.setDividerLocation(Settings.auxPanelSize);                    
         auxSplitPane.setTopComponent(evolutionPanel); 
         auxSplitPane.setBottomComponent(paretoPanel); 
 		
@@ -80,8 +82,6 @@ public class MainFrame extends JFrame implements Runnable{
 
         isRunMainFrame = true;
 
-        int aux = 0;
-
 		while(true && isRunMainFrame) {
 			long now = System.nanoTime();
 			delta += (now -lastTime)/ns;
@@ -93,13 +93,19 @@ public class MainFrame extends JFrame implements Runnable{
 
 				// Atualiza o melhor inidivíduo
 				citiesPanel.updateSequence(world);
+				paretoPanel.UpdatePareto(world);
 
-                evolutionPanel.nameID = String.valueOf(aux);
-                paretoPanel.nameID = String.valueOf(aux);
-
+				// if (world.generationsCount % Settings.FPS == 0){
+				// 	paretoPanel.hasUpdate = true;
+				// 	paretoPanel.UpdatePareto(world);
+				// 	//paretoPanel.repaint();
+				// }
+				
+                evolutionPanel.nameID = String.valueOf(world.generationsCount);
+				
+				//citiesPanel.repaint();
 				this.repaint();
 				delta--;
-                aux++;
 			}
 		}     
     }

@@ -62,14 +62,13 @@ public class World {
 
         }
 
-        // Add all the offspring to our existing population
-        populationOfIndividuals.addAll(offspring);
+        // Adiciona os novos filhos na população de pais
+        this.populationOfIndividuals.addAll(offspring);
 
-        // Atualiza os Fitness
-
+        // Atualiza os Fitness de toda a população
         MultiObjectiveHelper.UpdatePopulationFitness(this.populationOfIndividuals);
 
-        // Take the best 'PopulationCount' worth of individuals
+        // Encontra os melhores novos indivíduos
         List<Individual> newPopulation = new ArrayList<Individual>();
 
         LOOP:for (List<Individual> individualRank : Utility.findAllRanksByDistance(this.populationOfIndividuals)){
@@ -94,10 +93,9 @@ public class World {
 
     public Individual getBestIndividual()
     {
-        // We no longer have a 'best' individual, so we are going to show a random one from the first front.
+        // Sorteia um indivíduo presente na frente de pareto
         List<Individual> firstRank = Utility.findAllRanksByDistance(this.populationOfIndividuals).get(0);
         return firstRank.get(random.nextInt(firstRank.size()));
-        //return firstRank.get(0);
     }
 
     private List<Individual> mutate(Individual individualA, Individual individualB)

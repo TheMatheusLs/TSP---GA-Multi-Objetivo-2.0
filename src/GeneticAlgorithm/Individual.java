@@ -27,7 +27,6 @@ public class Individual {
     private double GetTotalTime() {
         double totalTime = 0.0;
 
-        // Loop over each of the line segments and add them up to get the total path distance.
         for (int i = 0; i < sequence.size(); i++){
             Vector2f fromCitie = TownHelper.townPositions.get(sequence.get(i));
             Vector2f toCitie = TownHelper.townPositions.get(sequence.get((i + 1)%Config.numberOfCities));
@@ -48,7 +47,6 @@ public class Individual {
        
         double totalDistance = 0.0;
 
-        // Loop over each of the line segments and add them up to get the total path distance.
         for (int i = 0; i < sequence.size(); i++){
             Vector2f fromCitie = TownHelper.townPositions.get(sequence.get(i));
             Vector2f toCitie = TownHelper.townPositions.get(sequence.get((i + 1)%Config.numberOfCities));
