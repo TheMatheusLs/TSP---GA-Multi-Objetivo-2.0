@@ -36,7 +36,7 @@ public class Individual {
 
             double d = Math.sqrt(x * x + y * y);
 
-            totalTime += d / TownHelper.pathSpeedLimits[i][(i + 1)%Config.numberOfCities];
+            totalTime += d / TownHelper.pathSpeedLimits[sequence.get(i)][sequence.get((i + 1)%Config.numberOfCities)];
         }
 
         return totalTime;
